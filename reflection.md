@@ -5,19 +5,21 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the hints were backwards").
+- List at least two concrete bugs you noticed at the start (for example: "the hints were backwards").
+
+  The first time I ran the game, the secret number was 18, and I tested several guesses, including 13, 2, 1, -100, and -100000000000. The game displayed "Go Lower!" after every guess, including guesses that were already below the secret number, suggesting that the hint logic was not responding correctly to the input. I also noticed that the score became -35 while the Developer Debug Info displayed zero attempts, which suggested a possible issue with the scoring or attempts-tracking logic. I planned to investigate the hint, scoring, and attempts logic in the code to determine the causes of these behaviors.
 
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
-| Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
-
+| Input / Bug | Expected Behavior | Actual Behavior | Console Output / Error | Suspected Code Location |
+|-------------|-------------------|-----------------|------------------------|-------------------------|
+| Bug 1: Guess 13 (secret = 18) | Too Low and Go Higher! | Too Low and Go Lower! | None | `app.py`, `check_guess()` |
+| Bug 1: Guess 2 (secret = 18) | Too Low and Go Higher! | Too Low and Go Lower! | None | `app.py`, `check_guess()` |
+| Bug 1: Guess 1 (secret = 18) | Too Low and Go Higher! | Too Low and Go Lower! | None | `app.py`, `check_guess()` |
+| Bug 2: Even-numbered attempt | Numeric comparison with the secret | Secret is converted to a string, which can cause incorrect comparisons | No console error observed | `app.py`, submit logic and `check_guess()` |
+| Bug 3: New Game button | Attempts counter should have a consistent starting value | Initial game sets attempts to 1, while New Game resets attempts to 0 | None | `app.py`, session state initialization and New Game logic |
 ---
 
 ## 2. How did you use AI as a teammate?
