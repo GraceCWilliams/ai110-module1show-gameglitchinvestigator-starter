@@ -1,5 +1,7 @@
 import random
+
 import streamlit as st
+
 # FIX: Moved testable game logic out of the Streamlit UI with AI assistance.
 from logic_utils import (
     check_guess,
