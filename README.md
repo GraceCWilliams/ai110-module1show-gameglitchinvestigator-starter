@@ -31,7 +31,7 @@ It wrote the code, ran away, and now the game is unplayable.
 
 The game is a Streamlit number-guessing game: the player chooses a difficulty, makes guesses within its number range, and uses higher/lower hints to find the secret before running out of attempts. I found that the hints pointed in the wrong direction, and that converting the secret to text on alternating attempts could make guesses compare alphabetically instead of numerically. The initial attempt count also started at 1, and starting a new game did not reset every piece of game state.
 
-I moved the game helpers, including `check_guess` and `parse_guess`, into `logic_utils.py`. Guess comparison now stays numeric, hints tell the player to go in the correct direction, attempts start at 0 so the first guess counts as attempt 1, and New Game resets status, attempts, score, and history while choosing a secret within the selected difficulty range. I added a regression test for guessing 2 when the secret is 18; the focused test suite passes.
+I moved the game helpers (`get_range_for_difficulty`, `parse_guess`, `check_guess`, and `update_score`) into `logic_utils.py`. Guess comparison now stays numeric, hints tell the player to go in the correct direction, attempts start at 0 so the first guess counts as attempt 1, and New Game resets status, attempts, score, and history while choosing a secret within the selected difficulty range. I added a regression test for guessing 2 when the secret is 18; the focused test suite passes.
 
 ## Demo Walkthrough
 
@@ -60,4 +60,5 @@ tests/test_game_logic.py ....                                            [100%]
 
 ## 🚀 Stretch Features
 
+- [x] **Professional Documentation and Style:** All four functions in `logic_utils.py` (`get_range_for_difficulty`, `parse_guess`, `check_guess`, `update_score`) have Google-style docstrings with Args, Returns, and doctest examples (9 passing via `python -m doctest logic_utils.py`). The code passes `flake8` with `pep8-naming` with no warnings. Fixes included blank-line spacing and line length in `tests/test_game_logic.py` and import grouping in `app.py`. The prompts, linter output, and applied changes are in [ai_interactions.md](ai_interactions.md).
 - [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
