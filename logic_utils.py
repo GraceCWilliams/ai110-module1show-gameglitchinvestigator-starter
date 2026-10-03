@@ -35,6 +35,7 @@ def check_guess(guess, secret):
 
     Outcomes are "Win", "Too High", and "Too Low".
     """
+    # FIX: Keep comparisons numeric to avoid lexicographic string results.
     if guess == secret:
         return "Win"
     if guess > secret:

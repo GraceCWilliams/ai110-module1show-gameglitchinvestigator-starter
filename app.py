@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+# FIX: Moved testable game logic out of the Streamlit UI with AI assistance.
 from logic_utils import (
     check_guess,
     get_range_for_difficulty,
@@ -36,6 +37,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
+    # FIX: Zero ensures the first submitted guess is counted as attempt one.
     st.session_state.attempts = 0
 
 if "score" not in st.session_state:
@@ -75,6 +77,7 @@ with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
+    # FIX: Reset all game state so a new game starts cleanly.
     st.session_state.status = "playing"
     st.session_state.attempts = 0
     st.session_state.score = 0
@@ -101,6 +104,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
         outcome = check_guess(guess_int, st.session_state.secret)
+        # FIX: Corrected the hint directions with AI-assisted debugging.
         message = {
             "Win": "🎉 Correct!",
             "Too High": "📉 Go LOWER!",

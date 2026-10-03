@@ -16,6 +16,6 @@ def test_guess_too_low():
     assert result == "Too Low"
 
 def test_single_digit_guess_is_compared_numerically():
-    # String comparison would incorrectly classify "2" as greater than "18".
+    # FIX: Regression test for the string-comparison bug, added with AI assistance.
     result = check_guess(2, 18)
     assert result == "Too Low"

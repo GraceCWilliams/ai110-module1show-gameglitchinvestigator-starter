@@ -24,18 +24,15 @@ Document at least 3 bugs you found. Add rows as needed.
 
 ## 2. How did you use AI as a teammate?
 
-- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
-- Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- Give one example of an AI suggestion you did not accept as written (including what the AI suggested, why you rejected or changed it, and how you verified your version). It does not have to be a suggestion that was wrong: over-engineered, out of scope, harder to read, or a poor fit for this codebase all count.
+I used the AI coding assistant in VS Code as a teammate to trace the guess-comparison bug, move the game helpers into `logic_utils.py`, and suggest a regression test. One suggestion I accepted was to keep the guess and secret numeric throughout `check_guess()` rather than converting the secret to a string on alternating attempts; this avoids comparing numbers as text. I verified it with a regression test that checks that guessing `2` against secret `18` returns `"Too Low"`, and it passed with the existing logic tests.
+
+One suggestion I did not keep was adding `pytest.ini` with a `pythonpath` setting so the bare `pytest` command could import the project module. I rejected that configuration because the project can run the tests directly with `python -m pytest tests/test_game_logic.py` from the project root, so an extra pytest configuration file was unnecessary for the workflow I chose. I removed the configuration and verified that the module-invocation command still passed all four tests.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
-- How did you decide whether a bug was really fixed?
-- Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
-- Did AI help you design or understand any tests? How?
+I checked the comparison behavior with the existing tests for a winning, too-high, and too-low guess, and added a regression case for the string-comparison failure: `check_guess(2, 18)` must return `"Too Low"`. I ran `python -m pytest tests/test_game_logic.py` from the project root with the virtual environment active; all four tests passed, including that new case. The tests verify the helper's outcomes; I also checked in `app.py` that `"Too High"` displays “Go LOWER!” and `"Too Low"` displays “Go HIGHER!”.
 
 ---
 
