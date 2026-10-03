@@ -25,28 +25,37 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+- [x] Detail which bugs you found.
+- [x] Explain what fixes you applied.
 
-## 📸 Demo Walkthrough
+The game is a Streamlit number-guessing game: the player chooses a difficulty, makes guesses within its number range, and uses higher/lower hints to find the secret before running out of attempts. I found that the hints pointed in the wrong direction, and that converting the secret to text on alternating attempts could make guesses compare alphabetically instead of numerically. The initial attempt count also started at 1, and starting a new game did not reset every piece of game state.
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+I moved the game helpers, including `check_guess` and `parse_guess`, into `logic_utils.py`. Guess comparison now stays numeric, hints tell the player to go in the correct direction, attempts start at 0 so the first guess counts as attempt 1, and New Game resets status, attempts, score, and history while choosing a secret within the selected difficulty range. I added a regression test for guessing 2 when the secret is 18; the focused test suite passes.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+## Demo Walkthrough
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+Sample game on Normal difficulty, with the secret number set to 50:
+
+1. The player starts a new game; attempts and score are reset to 0.
+2. The player guesses 40. The game responds “Too Low” and “Go HIGHER!”; the score becomes -5.
+3. The player guesses 60. The game responds “Too High” and “Go LOWER!”; this is attempt 2, so the score increases by 5 to 0.
+4. The player guesses 50. The game responds “Correct!”, shows the winning message and balloons, and ends the game with a final score of 60.
+5. The player selects “New Game” to reset the game state and play again.
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+$ source .venv/bin/activate && python -m pytest tests/test_game_logic.py
+============================= test session starts ==============================
+platform darwin -- Python 3.11.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/grace_computer/Library/Mobile Documents/com~apple~CloudDocs/AI110/ai110-module1show-gameglitchinvestigator-starter
+plugins: anyio-4.15.1
+collected 4 items
+
+tests/test_game_logic.py ....                                            [100%]
+
+============================== 4 passed in 0.01s ===============================
 ```
 
 ## 🚀 Stretch Features

@@ -38,13 +38,10 @@ I checked the comparison behavior with the existing tests for a winning, too-hig
 
 ## 4. What did you learn about Streamlit and state?
 
-- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+When someone interacts with a Streamlit widget, Streamlit reruns the app script from the top to redraw the page. Ordinary Python variables are recreated during that rerun, so values that need to persist between interactions, like the secret number and attempt count, belong in `st.session_state`. I would explain session state as a small per-user memory that survives those reruns, until the app explicitly changes or resets it.
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
-- What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+I want to keep writing a small regression test for the exact input that exposed a bug, then run the relevant tests after changing the code. Next time I work with an AI coding assistant, I will state the expected test command and project constraints up front; in this project, I initially followed a pytest configuration suggestion before deciding that `python -m pytest` was the workflow I needed. This project reminded me that AI-generated changes are suggestions, not proof: I should compare them with the existing code and verify them with tests before accepting them.
