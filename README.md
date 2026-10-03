@@ -61,4 +61,4 @@ tests/test_game_logic.py ....                                            [100%]
 ## 🚀 Stretch Features
 
 - [x] **Professional Documentation and Style:** All four functions in `logic_utils.py` (`get_range_for_difficulty`, `parse_guess`, `check_guess`, `update_score`) have Google-style docstrings with Args, Returns, and doctest examples (9 passing via `python -m doctest logic_utils.py`). The code passes `flake8` with `pep8-naming` with no warnings. Fixes included blank-line spacing and line length in `tests/test_game_logic.py` and import grouping in `app.py`. The prompts, linter output, and applied changes are in [ai_interactions.md](ai_interactions.md).
-#- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+
